@@ -47,7 +47,6 @@ public class ReviewsController {
     public ResponseEntity<Review> createReviewForProduct(@PathVariable("productId") Integer productId,
             @RequestBody Review review) {
 
-        System.out.println(review.getReviewTitle());
         Optional<Product> productOptional = productRepository.findById(productId);
 
         if (productOptional.isPresent()) {

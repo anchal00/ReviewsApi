@@ -71,9 +71,7 @@ public class CommentsController {
     public ResponseEntity<List<Comment>> listCommentsForReview(@PathVariable("reviewId") Integer reviewId) {
 
         List<Comment> listOfComments = commentRepository.findByReviewId(reviewId);
-        for (Comment c : listOfComments) {
-            System.out.println(c.getContent());
-        }
+    
         return new ResponseEntity<List<Comment>>(listOfComments, HttpStatus.CREATED);
     }
 }
