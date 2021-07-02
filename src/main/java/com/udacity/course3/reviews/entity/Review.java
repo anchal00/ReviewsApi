@@ -12,29 +12,43 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "reviews")
 public class Review {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "reviewId")
+    @Column(name = "review_id")
     private Integer reviewId;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id", nullable =  false)
-    private Product product;
+    @Column(name = "review_title" )
+    private String reviewTitle;
+    
+    @Column(name = "product_id")
+    private Integer productId;
 
-    @OneToMany(mappedBy = "review")
+    @OneToMany
+    @JoinColumn(name = "comment_id")
+    @JsonIgnore
     private List<Comment> commentsForReview;
 
     public Review() {
     }
 
-    public Review(Integer reviewId, Product product, List<Comment> commentsForReview) {
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public Review(Integer reviewId,List<Comment> commentsForReview, String reviewTitle) {
         this.reviewId = reviewId;
-        this.product = product;
         this.commentsForReview = commentsForReview;
+        this.reviewTitle = reviewTitle;
     }
 
     public Integer getReviewId() {
@@ -45,20 +59,20 @@ public class Review {
         this.reviewId = reviewId;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public List<Comment> getCommentsForReview() {
         return commentsForReview;
     }
 
     public void setCommentsForReview(List<Comment> commentsForReview) {
         this.commentsForReview = commentsForReview;
+    }
+
+    public String getReviewTitle() {
+        return reviewTitle;
+    }
+
+    public void setReviewTitle(String reviewTitle) {
+        this.reviewTitle = reviewTitle;
     }
     
     

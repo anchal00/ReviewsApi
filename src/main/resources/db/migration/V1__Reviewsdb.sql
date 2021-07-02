@@ -6,6 +6,7 @@ ALTER TABLE products MODIFY COLUMN product_id INTEGER AUTO_INCREMENT;
 
 CREATE TABLE reviews (
     review_id INTEGER PRIMARY KEY,
+    review_title varchar(50) DEFAULT NULL,
     product_id INTEGER NOT NULL,
     
     CONSTRAINT fk_reviews FOREIGN KEY (product_id)  
@@ -13,6 +14,7 @@ CREATE TABLE reviews (
     ON DELETE CASCADE  
     ON UPDATE CASCADE 
 );
+ALTER TABLE reviews MODIFY COLUMN review_id INTEGER AUTO_INCREMENT;
 
 CREATE TABLE comments (
     comment_id INTEGER PRIMARY KEY,
@@ -24,3 +26,4 @@ CREATE TABLE comments (
     ON DELETE CASCADE  
     ON UPDATE CASCADE 
 );
+ALTER TABLE comments MODIFY COLUMN comment_id INTEGER AUTO_INCREMENT;

@@ -12,15 +12,14 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "comments")
 public class Comment {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_id")
     private Integer commentId;
 
-    @ManyToOne
-    @JoinColumn(name = "review_id", nullable = false)
-    private Review review;
+    @Column(name = "review_id")
+    private Integer reviewId;
 
     @Column(name = "content")
     private String content;
@@ -28,28 +27,31 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(Integer commentId, Review review, String content) {
+    public Comment(Integer commentId, String content) {
         this.commentId = commentId;
-        this.review = review;
         this.content = content;
+    }
+
+    public Integer getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(Integer reviewId) {
+        this.reviewId = reviewId;
     }
 
     public Integer getId() {
         return commentId;
     }
 
-    public void setId(Integer commentId) {
+    public Integer getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(Integer commentId) {
         this.commentId = commentId;
     }
-
-    public Review getReview() {
-        return review;
-    }
-
-    public void setReview(Review review) {
-        this.review = review;
-    }
-
+    
     public String getContent() {
         return content;
     }
@@ -57,5 +59,5 @@ public class Comment {
     public void setContent(String content) {
         this.content = content;
     }
-    
+
 }
